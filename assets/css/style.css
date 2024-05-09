@@ -16,3 +16,21 @@
     --secondaryColor: #ffffff;
 
 }
+
+
+body {
+
+    height: 100vh;
+    width: 100%;
+    font-family: Sans-serif, Serif, Arial;
+    background-color: var(--primaryColor);
+
+}
+/* 
+#home-btn, #browse-btn, #library-btn {
+
+    border: solid;
+    background-color: var(--primaryColor);
+    border: var(--secondaryColor);
+    
+} */

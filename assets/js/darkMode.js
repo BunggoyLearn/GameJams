@@ -1,3 +1,5 @@
+/*******************   Dark Theme Function *******************/
+
 const icon = document.getElementById("icon");
 
 icon.onclick = function() {

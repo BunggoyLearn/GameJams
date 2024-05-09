@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title> Game Jams</title>
 </head>
 
@@ -13,13 +15,16 @@
     </header>
     <div class="hero flex">
         <div class="h-screen border-solid border-2 border-black w-1/5">
-            <div id="logo" class="h-1/10 w-full p-2 rounded text-center text-lg-">
+            <div id="logo" class="h-1/10 w-full p-2 rounded text-center">
                 GameJams
+                <button>
+                    <img src="./assets/img/moon.png" id="icon" alt="moon" class="w-8">
+                </button>
             </div>
             <button id="home-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded bg-gray-300 text-center">
                 &#127968; Home
             </button>
-            <button id="brose-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded text-center">
+            <button id="browse-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded text-center">
                 &#128269; Browse
             </button>
             <button id="library-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded text-center">
@@ -29,7 +34,7 @@
     </div>
     <footer class="footer">
     </footer>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/darkMode.js"></script>
 </body>
 
 </html>
