@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        </style>
     <title> Game Jams</title>
 </head>
 
@@ -13,21 +16,22 @@
     <header>
 
     </header>
-    <div class="hero flex">
+    <div class="hero flex bg-gray-800">
         <div class="h-screen border-solid border-2 border-black w-1/5">
-            <div id="logo" class="h-1/10 w-full p-2 rounded text-center">
+            <div id="logo" class="h-1/10 w-full p-2 rounded text-center share-tech-mono-regular">
+                <img src="">
                 GameJams
                 <button>
                     <img src="./assets/img/moon.png" id="icon" alt="moon" class="w-8">
                 </button>
             </div>
-            <button id="home-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded bg-gray-300 text-center">
+            <button id="home-btn" class="btn h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
                 &#127968; Home
             </button>
-            <button id="browse-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded text-center">
-                &#128269; Browse
+            <button id="search-btn" class="btn h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
+                &#128269; Search
             </button>
-            <button id="library-btn" class="h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-black rounded text-center">
+            <button id="library-btn" class="btn h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-neutral-300 bg-gray-300 rounded text-center share-tech-mono-regular">
                 &#128366; Library
             </button>
         </div>
