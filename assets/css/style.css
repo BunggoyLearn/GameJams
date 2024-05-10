@@ -1,3 +1,14 @@
+/* <style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+</style> */
+
+.share-tech-mono-regular {
+    font-family: "Share Tech Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
 * {
     margin: 0;
     padding: 0;
@@ -34,3 +45,11 @@ body {
     border: var(--secondaryColor);
     
 } */
+
+.btn:hover {
+
+    transition-duration: 0.5s;
+    filter: drop-shadow(3px 3px 6px rgb(6, 149, 4));
+    box-shadow: 2px 2px 2px;
+
+}
