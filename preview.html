@@ -12,22 +12,25 @@
     </head>
 </head>
 <body>
-<div class="flex h-screen w-full flex-wrap bg-gray-800 text-white">  
+<section class="flex h-screen w-full flex-wrap bg-gray-800 text-white">  
     <div id="selected-title" class="h-1/3 w-full border-solid border-2 border-black">
+        <div>
+            test object
+        </div>
     </div>
-    <div id="Genres" class="h-2/3 w-full border-solid border-2 border-black">
+    <div id="dropdown" class="h-2/3 w-full border-solid border-2 border-black">
         <div class="ml-60">
  
-            <form action="#">
+            <form>
              
               <fieldset>
                 <label for="genre">Select a genre</label>
-                <select name="genre" id="speed">
+                <select name="genre" id="speed" class="genres">
                   <option></option>
                 </select>
              
                 <label for="playlist">Select a playlist</label>
-                <select name="playlist" id="files">
+                <select name="playlist" id="files" class="playtlists">
                     <option></option>
                 </optgroup>
                 </select>
@@ -35,10 +38,10 @@
              
             </form>
              
-            </div>
+        </div>
     </div>
     
-</div>   
+</section>   
 <script src="./assets/js/preview.js"></script> 
 </body>
 </html>
