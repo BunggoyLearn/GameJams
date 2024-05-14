@@ -56,6 +56,16 @@ body {
 /**************************************** Preview HTML ************************************/
 
 
+#back-button {
+
+    position: fixed;
+    margin-top: 2rem;
+    margin-left: -140rem;
+    box-shadow: 2px 2px 2px;
+    cursor: pointer;
+
+}
+
 fieldset {
     border: 0;
   }
