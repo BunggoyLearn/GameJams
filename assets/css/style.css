@@ -1,6 +1,5 @@
-/* <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-</style> */
 
 .share-tech-mono-regular {
     font-family: "Share Tech Mono", monospace;
@@ -53,3 +52,17 @@ body {
     box-shadow: 2px 2px 2px;
 
 }
+
+/**************************************** Preview HTML ************************************/
+
+
+fieldset {
+    border: 0;
+  }
+  label {
+    display: block;
+    margin: 30px 0 0 0;
+  }
+  .overflow {
+    height: 200px;
+  }
