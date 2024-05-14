@@ -1,4 +1,4 @@
-
+const backButton = document.getElementById("back-button");
 
 $( function() {
     $( "#speed" ).selectmenu();
@@ -11,4 +11,11 @@ $( function() {
         .addClass( "overflow" );
  
     $( "#salutation" ).selectmenu();
-  } );
+} );
+
+
+/*  */
+
+backButton.addEventListener('click', function () {
+    location.href = "index.html"
+});

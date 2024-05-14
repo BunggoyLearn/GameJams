@@ -5,7 +5,7 @@
     font-family: "Share Tech Mono", monospace;
     font-weight: 400;
     font-style: normal;
-  }
+}
   
 
 * {
@@ -20,14 +20,6 @@
 
 }
 
-.darkTheme {
-
-    --primaryColor: #212121;
-    --secondaryColor: #ffffff;
-
-}
-
-
 body {
 
     height: 100vh;
@@ -36,14 +28,6 @@ body {
     background-color: var(--primaryColor);
 
 }
-/* 
-#home-btn, #browse-btn, #library-btn {
-
-    border: solid;
-    background-color: var(--primaryColor);
-    border: var(--secondaryColor);
-    
-} */
 
 .btn:hover {
 
@@ -55,6 +39,24 @@ body {
 
 /**************************************** Preview HTML ************************************/
 
+
+#back-button {
+
+    position: fixed;
+    margin-top: 2rem;
+    margin-left: -140rem;
+    box-shadow: 2px 2px 2px;
+    cursor: pointer;
+
+}
+
+#back-button:hover {
+
+    transition-duration: 0.5s;
+    filter: drop-shadow(3px 3px 6px rgb(6, 149, 4));
+    box-shadow: 2px 2px 2px;
+    
+}
 
 fieldset {
     border: 0;
