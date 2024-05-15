@@ -64,25 +64,29 @@ function loadGames(url) {
 
 loadGames(url);
 
+/*
+
 loadMoreGamesBtn.addEventListener("click", () => {
   if (nextGameListUrl) {
     loadGames(nextGameListUrl);
   }
 });
     return response.json();
-  })
+
   .then(data => {
     console.log(data);
   })
   .catch(error => {
     console.error('Error:', error);
   });
- 
+ */
+
+  //Spotify API zone
 
   const SpotifyAPI = (function() {
 
-    const clientId = '';
-    const clientSecret = '';
+    const clientId = '5ff9d82d94b548d38b13019b174e11af';
+    const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
 
     //private methods
     const _getToken = async () => {
@@ -159,6 +163,24 @@ loadMoreGamesBtn.addEventListener("click", () => {
       return data;
     }
 
+    /*
+    const _getReccomendedSongs = async (token, genreID) => {
+
+      //This limit says how many playlists we would like to recieve
+
+      const limit = 10;
+
+      //Find playlists that are attached to the GenreID of the category with an attached aforementioned limit.
+
+      const result = await fetch(`https://api.spotify.com/v1/recommendations?`, {
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + token}
+      });
+
+      const data = await result.json();
+      return data.playlists.items;
+    }
+*/
     //
 
     return {
@@ -179,3 +201,145 @@ loadMoreGamesBtn.addEventListener("click", () => {
       },
     }
   })();
+
+const SpotifyUIController = (function() {
+
+    const DOMElements = {
+      selectgenre: '#Genre-select',
+      selectplaylist: '#Playlist-select',
+      buttonsubmit: '#btn-submit',
+      divSongDetail: '#song-detail',
+      hfToken: '#hidden-token',
+      divSonglist: '#song-list',
+    }
+
+    return {
+
+        inputField() {
+          return{
+            genre: document.querySelector(DOMElements.selectgenre),
+            playlist: document.querySelector(DOMElements.selectplaylist),
+            songs: document.querySelector(DOMElements.divSonglist),
+            submit: document.querySelector(DOMElements.buttonsubmit),
+            songDetail: document.querySelector(DOMElements.divSongDetail),
+          }
+        },
+
+        createGenre(text, value) {
+          const html = `<option value="${value}">${text}</option>`;
+          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
+        },
+
+        createPlaylist(text, value) {
+          const html = `<option value="${value}">${text}</option>`
+          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
+        },
+
+        createTrack(id, name) {
+          const html = `<a href='#' class='list-group-item list-group-item-action list-group-item-light' id='${id}'>${name}</a>`;
+          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
+        },
+
+        createSongDetail(img, title, artist) {
+          const detailDiv = document.querySelector(DOMElements.divSongDetail);
+          detailDiv.innerHTML = '';
+
+          const html = 
+          `
+          <div class="row col-sm-12 px-0">
+            <img src ="${img}" alt="">
+          </div>
+          <div class="row col-sm-12 px-0">
+            <label for="Genre" class="form-label col-sm-12">${title}:</label>
+          </div>
+          <div class="row col-sm-12 px-0">
+            <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
+          </div>
+            `;
+
+            detailDiv.insertAdjacentHTML('beforeend', html)
+        },
+
+        resetSongDetail() {
+          this.inputField().songDetail.innerHTML = '';
+        },
+
+        resetTrackDetail() {
+          this.inputField().songDetail.innerHTML = '';
+        },
+
+        resetTracks(){
+          this.inputField().songDetail.innerHTML = '';
+          this.resetTrackDetail();
+        },
+
+        resetPlaylist() {
+          this.inputField().playlist.innerHTML = '';
+          this.resetTracks();
+        }
+    }
+})();
+
+const SpotifyAPPController = (function(UICtrl, APICtrl) {
+
+    const DOMInputs = UICtrl.inputField();
+
+    const loadGenres = async () => {
+      const token = await APICtrl._getToken();
+      const genres = await APICtrl._getGenres(token);
+      genres.forEach(element => UICtrl.createGenre(element.name, element.id));
+    }
+
+    DOMInputs.genre.addEventListener('change', async () => {
+        UICtrl.resetPlaylist();
+
+        const token = UICtrl.getStoredToken().token;
+
+        const genreSelect = UICtrl.inputField().genre;
+
+        const genreID = genreSelect.options[genreSelect.selectedIndex].value;
+
+        const playlist = await APICtrl._getPlaylistByGenre(token, genreID);
+
+        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
+    });
+
+    DOMInputs.submit.addEventListener('click', async (e) => {
+        e.preventDefault();
+        UICtrl.resetTracks();
+
+        const token = UICtrl.getStoredToken().token;
+
+        const playlistSelect = UICtrl.inputField().playlist;
+
+        const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
+
+        const tracks = await APICtrl._getTracks(token, tracksEndPoint);
+
+        tracks.forEach(t => UICtrl.createTrack(t.track.href, t.track.name));
+    });
+
+    DOMInputs.songs.addEventListener('click', async (e) => {
+        e.preventDefault();
+        UICtrl.resetPlaylist();
+
+        const token = UICtrl.getStoredToken().token;
+
+        const trackEndPoint = e.target.id;
+
+        const track = await APICtrl._getTrack(token, trackEndPoint);
+
+        UICtrl.createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
+    });
+
+    return {
+      init() {
+        console.log('App is starting');
+        loadGenres();
+      }
+    }
+
+})(UIController, APIController);
+
+// will need to call a method to load the genres on page load
+APPController.init();
