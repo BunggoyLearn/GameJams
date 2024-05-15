@@ -57,9 +57,14 @@ function loadGames(url) {
     // Add elements into game list
     gameslist.insertAdjacentElementHTML("beforeend", gameItemEl)
     });
-    if(nextGamelistURL) {
-      
-    }
+    if (nextGameListUrl) {
+      loadMoreGamesBtn.classList.remove("hidden");
+  } else {
+      loadMoreGamesBtn.classList.add("hidden");
+  }
+    .catch(error => {
+      console.log("An error occurred:", error);
+    });
 }
 
 loadGames(url);
