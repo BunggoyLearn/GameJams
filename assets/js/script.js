@@ -6,10 +6,10 @@ const loadMoreGamesBtn = document.querySelector(".main-button");
 let nextGameListURL = null;
 
 // Define API key
-const APIKey = `d888509914e94b9db7453c6dcf445933`;
+const RawgKey = `d888509914e94b9db7453c6dcf445933`;
 
 // Define the API URL
-const url = `https://api.rawg.io/api/games?key=${APIKey}`;
+const url = `https://api.rawg.io/api/games?key=${RawgKey}`;
 
 const getPlatformStr = (platforms) => {
   const platformStr = platforms.map((each) => each.platform.name).join(", "); // mapping through platforms
