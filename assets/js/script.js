@@ -1,3 +1,4 @@
+try {
 // Define loader, gameslist, and moregames button
 const loaderEl = document.getElementById("js-preloader");
 const gameslist = document.querySelector(".gamelist");
@@ -62,11 +63,12 @@ function loadGames(url) {
   } else {
       loadMoreGamesBtn.classList.add("hidden");
   }
+  /*
     .catch(error => {
       console.log("An error occurred:", error);
     });
+    */
 }
-
 loadGames(url);
 
 /*
@@ -85,128 +87,163 @@ loadMoreGamesBtn.addEventListener("click", () => {
     console.error('Error:', error);
   });
  */
+}
 
+catch (e) {};
   //Spotify API zone
-
-  const SpotifyAPI = (function() {
-
-    const clientId = '5ff9d82d94b548d38b13019b174e11af';
-    const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
+  
+  const clientId = '5ff9d82d94b548d38b13019b174e11af';
+  const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
 
     //private methods
-    const _getToken = async () => {
+const _getToken = async () => {
 
-        const result = await fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic' + btoa(clientId + ':' + clientSecret)
-          },
-          body: 'grant_type=client_credentials'
-        });
+    const result = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded',
+        'Authorization' : 'Basic ' + btoa(`${clientId}:${clientSecret}`)
+      },
+      body: 'grant_type=client_credentials'
+    });
 
-        const data = await result.json();
-        return data.access_token;
-    }
+    const data = await result.json();
+    return data.access_token;
+}
 
-    //Spotify requires as per documentation, an API token to be present in the header and to use the 'GET' method to fetch a category.
+//Spotify requires as per documentation, an API token to be present in the header and to use the 'GET' method to fetch a category.
 
-    const _getGenres = async (token) => {
-      
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
-          method: 'GET',
-          headers: { 'Authorization' : 'Bearer ' + token}
-        });
+/*
+const _getGenres = async (token) => {
+  
+    const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+    });
 
-        //Get the data convert it to json and return the category to the object.
+    //Get the data convert it to json and return the category to the object.
 
-        const data = await result.json();
-        return data.categories.items;
-    }
-    
-    const _getPlaylistByGenre = async (token, genreID) => {
-
-      //This limit says how many playlists we would like to recieve
-
-      const limit = 10;
-
-      //Find playlists that are attached to the GenreID of the category with an attached aforementioned limit.
-
-      const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreID}/playlists?limit=${limit}`, {
-          method: 'GET',
-          headers: { 'Authorization' : 'Bearer ' + token}
-      });
-
-      const data = await result.json();
-      return data.playlists.items;
-    }
-
-    //tracks endpoint will be attached to the object we recieve prior from getGenre, so we can use it
-
-    const _getTracks = async (token, tracksEndPoint) => {
-
-        const limit = 10;
-
-        const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
-
-        const data = result.json();
-        return data.items;
-    }
-
-    //This will track a specific track the user wants to select. 
-
-    const _getTrack = async (token, trackEndPoint) => {
-      const result = await fetch(`${trackEndPoint}`, {
-          method: 'GET',
-         headers: { 'Authorization' : 'Bearer ' + token}
-      });
-
-      const data = await result.json();
-      return data;
-    }
-
-    /*
-    const _getReccomendedSongs = async (token, genreID) => {
-
-      //This limit says how many playlists we would like to recieve
-
-      const limit = 10;
-
-      //Find playlists that are attached to the GenreID of the category with an attached aforementioned limit.
-
-      const result = await fetch(`https://api.spotify.com/v1/recommendations?`, {
-          method: 'GET',
-          headers: { 'Authorization' : 'Bearer ' + token}
-      });
-
-      const data = await result.json();
-      return data.playlists.items;
-    }
+    const data = await result.json();
+    return data.categories.items;
+}
 */
-    //
 
-    return {
-      _getToken() {
-        return _getToken();
-      },
-      _getGenres(token) {
-        return _getGenres(token);
-      },
-      _getPlaylistByGenre(token, genreID) {
-        return _getPlaylistByGenre(token, genreID);
-      },
-      _getTracks(token, tracksEndPoint) {
-        return _getTracks(token, tracksEndPoint);
-      },
-      _getTrack(token, trackEndPoint) {
-        return _getTrack(token, trackEndPoint);
-      },
+const _getPlaylistByGenre = async (token, genreID) => {
+
+  //This limit says how many playlists we would like to recieve
+
+  const limit = 10;
+
+  //Find playlists that are attached to the GenreID of the category with an attached aforementioned limit.
+
+  const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreID}/playlists?limit=${limit}`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+  });
+
+  const data = await result.json();
+  return data.playlists.items;
+}
+
+
+const _getPlaylistTracks = async (token, playlistID) => {
+
+  const limit = 10;
+
+  const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${limit}`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+  });
+  
+  const data = await result.json();
+  return data.items;
+}
+
+//tracks endpoint will be attached to the object we recieve prior from getGenre, so we can use it
+
+/*
+
+const _getTracks = async (token, tracksID) => {
+
+    const limit = 10;
+
+    const result = await fetch(`https://api.spotify.com/v1/tracks?ids=${tracksID}&limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : `Bearer ${token}`}
+    });
+
+    const data = result.json();
+    return data.items;
+}
+
+//This will track a specific track the user wants to select. 
+
+const _getTrack = async (token, trackID) => {
+  const result = await fetch(`https://api.spotify.com/v1/tracks/${trackID}`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+  });
+
+  const data = await result.json();
+  return data;
+}
+
+*/
+
+const _getRecommendedSongs = async (token, genreSeed, trackSeeds) => {
+
+  //Find recommended tracks through Spotify API.
+
+  const result = await fetch(`https://api.spotify.com/v1/recommendations?seed_genres=${genreSeed}&seed_tracks=${trackSeeds}`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+  });
+
+  const data = await result.json();
+  return data.tracks;
+}
+
+const SpotifyGetTrackbyPlaylist = async() => {
+  const token = await _getToken();
+  const genreID = 'dinner';
+  const playlists = await _getPlaylistByGenre(token, genreID);
+  let infoPlacer = '';
+  for (playlistIndex in playlists) {
+    const playlist = playlists[playlistIndex]
+    const id = playlist.id;
+    const tracks = await _getPlaylistTracks(token, id);
+    infoPlacer += `
+    <div class="playlist"> 
+    <h1>${playlist.name}</h1> 
+    `
+    for (trackIndex in tracks) {
+      const track = tracks[trackIndex]
+      const trackInfo = {
+        trackImage: track.track.album.images[0].url,
+        trackName: track.track.name,
+        trackPreview: track.track.preview_url,
+      }
+      infoPlacer += `
+      <div class="track">
+         <h2>${trackInfo.trackName}</h2>
+         <img src="${trackInfo.trackImage}"/>
+         <audio controls src="${trackInfo.trackPreview}"></audio>
+      </div>
+
+    `
     }
-  })();
+    infoPlacer += `
+    </div>
+    `
 
+    console.log(infoPlacer);
+    document.getElementById('game-catalog').innerHTML = infoPlacer;
+  }
+}
+
+SpotifyGetTrackbyPlaylist();
+
+/*
 const SpotifyUIController = (function() {
 
     const DOMElements = {
@@ -344,7 +381,9 @@ const SpotifyAPPController = (function(UICtrl, APICtrl) {
       }
     }
 
-})(UIController, APIController);
+})(SpotifyUIController, APIController);
 
 // will need to call a method to load the genres on page load
-APPController.init();
+SpotifyAPPController.init();
+
+*/
