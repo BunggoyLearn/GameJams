@@ -5,40 +5,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./test-files/catalog.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title> Game Jams</title>
 </head>
 
-<body>
+<body class="bg-gray-800">
     <header>
 
     </header>
     <div class="hero flex bg-gray-800">
-        <div class="h-screen border-solid border-2 border-black w-1/5">
+        <div id="left-screen" class="h-screen border-solid border-2 border-black w-1/5">
             <div id="logo" class="h-1/10 w-full p-2 rounded text-center share-tech-mono-regular">
                 <img src="" class="mt-40">
                 GameJams
-                <button>
-                    <img src="./assets/img/moon.png" id="icon" alt="moon" class="w-8">
-                </button>
             </div>
-            <button id="home-btn" class="btn h-1/10 w-4/5 m-6 mt-40 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
+            <button id="home-btn" onClick="window.location.reload();" class="btn h-1/10 w-4/5 m-6 mt-40 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
                 &#127968; Home
             </button>
             <button id="search-btn" class="btn h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
                 &#128269; Search
             </button>
-            <button id="library-btn" class="btn h-1/10 w-4/5 m-6 p-2 border-solid border-2 border-neutral-300 bg-gray-300 rounded text-center share-tech-mono-regular">
-                &#128366; Library
-            </button>
         </div>
-        <div id="game-catalog" class="h-screen border-solid border-2 border-black w-4/5">
-
+        <div class="h-screen w-1/5"></div>
+        <div id="game-catalog" class="h-screen w-4/5">
+            <div class="container mx-auto sm:px-4 max-w-full mx-auto sm:px-4">
+                <div class="flex flex-wrap">
+                  <div class="lg:w-full pr-4 pl-4">
+                    <div class="most-popular">
+                      <div class="flex flex-wrap">
+                        <div class="lg:w-full pr-4 pl-4">
+                          <div class="heading-section">
+                          <div class="flex flex-wrap gameList">
+                            
+                          </div>
+                          <div class="lg:w-full pr-4 pl-4">
+                            <div class="main-button">
+                              <a href="javascript:void(0)">Load More Games</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
     </div>
     <footer class="footer">
     </footer>
-    <script src="./assets/js/script.js"></script>
+    <script src="./test-files/test.js"></script>
 </body>
 
 </html>

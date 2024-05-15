@@ -29,8 +29,15 @@ body {
 
 }
 
+#left-screen {
+
+    position: fixed;
+    
+}
+
 .btn:hover {
 
+    cursor: pointer;
     transition-duration: 0.5s;
     filter: drop-shadow(3px 3px 6px rgb(6, 149, 4));
     box-shadow: 2px 2px 2px;
@@ -44,7 +51,7 @@ body {
 
     position: fixed;
     margin-top: 2rem;
-    margin-left: -140rem;
+    margin-left: -110rem;
     box-shadow: 2px 2px 2px;
     cursor: pointer;
 
@@ -68,3 +75,5 @@ fieldset {
   .overflow {
     height: 200px;
   }
+
+  
