@@ -10,7 +10,7 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
-/********************************************* Deafults *********************************************/
+/********************************************* Defaults *********************************************/
 
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -89,4 +89,32 @@ fieldset {
     height: 200px;
   }
 
-  
+#playlists {
+    display: flex;
+    flex-direction: row;
+}
+
+#albums {
+    display: flex;
+    flex-direction: row;
+}
+
+.lister {
+    display: flex;
+    flex-direction: row;
+}
+
+.lister img {
+    max-width: 60px;
+    margin-right: 20px;
+}
+
+.artist {
+    font-size: small;
+}
+
+.tracks {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
