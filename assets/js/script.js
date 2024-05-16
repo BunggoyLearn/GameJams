@@ -159,40 +159,13 @@ const _getPlaylistTracks = async (token, playlistID) => {
   return data.items;
 }
 
-//tracks endpoint will be attached to the object we recieve prior from getGenre, so we can use it
-
-/*
-
-const _getTracks = async (token, tracksID) => {
-
-    const limit = 10;
-
-    const result = await fetch(`https://api.spotify.com/v1/tracks?ids=${tracksID}&limit=${limit}`, {
-        method: 'GET',
-        headers: { 'Authorization' : `Bearer ${token}`}
-    });
-
-    const data = result.json();
-    return data.items;
-}
-
-//This will track a specific track the user wants to select. 
-
-const _getTrack = async (token, trackID) => {
-  const result = await fetch(`https://api.spotify.com/v1/tracks/${trackID}`, {
-      method: 'GET',
-      headers: { 'Authorization' : `Bearer ${token}`}
-  });
-
-  const data = await result.json();
-  return data;
-}
-
-*/
-
 const _getRecommendedSongs = async (token, genreSeed, trackSeeds) => {
 
   //Find recommended tracks through Spotify API.
+
+  console.log(token);
+  console.log(genreSeed);
+  console.log(trackSeeds);
 
   const result = await fetch(`https://api.spotify.com/v1/recommendations?seed_genres=${genreSeed}&seed_tracks=${trackSeeds}`, {
       method: 'GET',
@@ -200,22 +173,43 @@ const _getRecommendedSongs = async (token, genreSeed, trackSeeds) => {
   });
 
   const data = await result.json();
+  console.log(data.tracks);
   return data.tracks;
 }
 
+const _getAlbumTracks = async (token, albumID) => {
+
+  const limit = 10;
+
+  const result = await fetch(`https://api.spotify.com/v1/albums/${albumID}/tracks?limit=${limit}`, {
+      method: 'GET',
+      headers: { 'Authorization' : `Bearer ${token}`}
+  });
+  
+  const data = await result.json();
+  console.log(data.items);
+  return data.items;
+}
+
+//This is the executer function for getting playlists and the tracks within them.
+
 const SpotifyGetTrackbyPlaylist = async() => {
+// First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
   const token = await _getToken();
   const genreID = 'dinner';
   const playlists = await _getPlaylistByGenre(token, genreID);
   let infoPlacer = '';
+//Now we make a "for in" loop that does a basic counter, making sure all of the playlist IDs that were accessed earlier are accounted for
   for (playlistIndex in playlists) {
     const playlist = playlists[playlistIndex]
     const id = playlist.id;
     const tracks = await _getPlaylistTracks(token, id);
+//We append infoPlacer and give it a Div and a h1 tag which will be the Playlist's name.
     infoPlacer += `
     <div class="playlist"> 
     <h1>${playlist.name}</h1> 
     `
+//Now we nest another "For In" Loop. Same thing but for the tracks within each playlist. We put the specifics we want from the data into an object called trackInfo.
     for (trackIndex in tracks) {
       const track = tracks[trackIndex]
       const trackInfo = {
@@ -223,6 +217,7 @@ const SpotifyGetTrackbyPlaylist = async() => {
         trackName: track.track.name,
         trackPreview: track.track.preview_url,
       }
+//Now we append infoPlacer with the information of the object above and boom done.
       infoPlacer += `
       <div class="track">
          <h2>${trackInfo.trackName}</h2>
@@ -232,17 +227,54 @@ const SpotifyGetTrackbyPlaylist = async() => {
 
     `
     }
+//Need to append that closing div OUTSIDE the first "For In" loop.
     infoPlacer += `
     </div>
     `
+//Now we actually append infoPlacer into the HTML.
+    document.getElementById('game-catalog-playlists').innerHTML = infoPlacer;
+  }
+}
 
-    console.log(infoPlacer);
-    document.getElementById('game-catalog').innerHTML = infoPlacer;
+const SpotifyGetTrackbyAlbum = async() => {
+  // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
+  const token = await _getToken();
+  const genreSeed = 'classical%2Ccountry';
+  const trackSeeds = '0c6xIDDpzE81m2q797ordA';
+  const tracks = await _getRecommendedSongs(token, genreSeed, trackSeeds);
+  let infoPlacerDos = '';
+  for (trackIndex in tracks) {
+    const track = tracks[trackIndex]
+    const id = track.album.id;
+    const albumtracks = await _getAlbumTracks(token, id);
+    infoPlacerDos += `
+    <div class="playlist"> 
+    <h1>${albumtracks.name}</h1> 
+    `
+    for (albumtrackIndex in albumtracks) {
+      const albumtrack = albumtracks[albumtrackIndex]
+      const trackInfo = {
+        trackName: albumtrack.name,
+        trackPreview: albumtrack.preview_url,
+      }
+      infoPlacerDos += `
+      <div class="track">
+         <h2>${trackInfo.trackName}</h2>
+         <img src="${trackInfo.trackImage}"/>
+         <audio controls src="${trackInfo.trackPreview}"></audio>
+      </div>
+
+    `
+    }
+    infoPlacerDos += `
+    </div>
+    `
+    document.getElementById('game-catalog-albums').innerHTML = infoPlacerDos;
   }
 }
 
 SpotifyGetTrackbyPlaylist();
-
+SpotifyGetTrackbyAlbum();
 /*
 const SpotifyUIController = (function() {
 
@@ -385,5 +417,4 @@ const SpotifyAPPController = (function(UICtrl, APICtrl) {
 
 // will need to call a method to load the genres on page load
 SpotifyAPPController.init();
-
 */
