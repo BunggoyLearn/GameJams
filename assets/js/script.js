@@ -1,49 +1,44 @@
-try {
 // Define loader, gameslist, and moregames button
 const loaderEl = document.getElementById("js-preloader");
-const gameslist = document.querySelector(".gamelist");
-const loadMoreGamesButton = document.querySelector(".main-button");
+const gameList = document.querySelector(".gamelist");
+const loadMoreGamesBtn = document.querySelector(".main-button");
 // Create null function
-let nextGamelistURL = null;
+let nextGameListURL = null;
 
 // Define API key
-const APIKey = `d888509914e94b9db7453c6dcf445933`;
+const RawgKey = `d888509914e94b9db7453c6dcf445933`;
 
 // Define the API URL
-const url = `https://api.rawg.io/api/games?key=${APIKey}`;
+const url = `https://api.rawg.io/api/games?key=${RawgKey}`;
 
 const getPlatformStr = (platforms) => {
-  const platformStr = platforms.map(each => each.platform.name).join(", "); // mapping through platforms
-    if (platformStr.length > 30) { 
-        return platformStr.substring(0, 30) + "..."; // returning 30 plus triple load "..." more characters
-    }
-    return platformStr;
-}
+  const platformStr = platforms.map((each) => each.platform.name).join(", "); // mapping through platforms
+  if (platformStr.length > 30) {
+    return platformStr.substring(0, 30) + "..."; // returning 30 plus triple load "..." more characters
+  }
+  return platformStr;
+};
 
 // Create a loadgames function and fetch url
 function loadGames(url) {
   loaderEl.classList.remove("loaded");
 
-  fetch(url)
-    .then((Response) => Response.json())
-    .then((data) => {
-      console.log(data);
-    });
-  // Look for games list value if it doesn't have one use null
-  nextGamelistURL = data.next ? data.next : null;
   // Fetch recently released games from RAWG API
-  const games = data.results;
-  loaderEl.classList.add("loaded");
-  games.forEach((game) => {
-    const gameItemEl = `
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      nextGameListUrl = data.next ? data.next : null;
+      const games = data.results;
+      games.forEach((game) => {
+        const gameItemEl = `
     <div class="flex-auto w-32">
       <div class="Item">
         <img src="${game.background_image}" alt="${game.name} image">
         <h4 class="game-name">${
           game.name
         }<br><span class="platforms">${getPlatformStr(
-      game.parent_platforms
-    )}</span></h4>
+          game.parent_platforms
+        )}</span></h4>
         <ul>
           <li><i class="fa fa-star"></i> <span class="rating">${
             game.rating
@@ -71,14 +66,11 @@ function loadGames(url) {
 }
 loadGames(url);
 
-/*
-
 loadMoreGamesBtn.addEventListener("click", () => {
   if (nextGameListUrl) {
     loadGames(nextGameListUrl);
   }
 });
-    return response.json();
 
   .then(data => {
     console.log(data);
@@ -278,48 +270,43 @@ SpotifyGetTrackbyAlbum();
 /*
 const SpotifyUIController = (function() {
 
-    const DOMElements = {
-      selectgenre: '#Genre-select',
-      selectplaylist: '#Playlist-select',
-      buttonsubmit: '#btn-submit',
-      divSongDetail: '#song-detail',
-      hfToken: '#hidden-token',
-      divSonglist: '#song-list',
-    }
+  return {
+    inputField() {
+      return {
+        genre: document.querySelector(DOMElements.selectgenre),
+        playlist: document.querySelector(DOMElements.selectplaylist),
+        songs: document.querySelector(DOMElements.divSonglist),
+        submit: document.querySelector(DOMElements.buttonsubmit),
+        songDetail: document.querySelector(DOMElements.divSongDetail),
+      };
+    },
 
-    return {
+    createGenre(text, value) {
+      const html = `<option value="${value}">${text}</option>`;
+      document
+        .querySelector(DOMElements.selectplaylist)
+        .insertAdjacentHTML("beforeend", html);
+    },
 
-        inputField() {
-          return{
-            genre: document.querySelector(DOMElements.selectgenre),
-            playlist: document.querySelector(DOMElements.selectplaylist),
-            songs: document.querySelector(DOMElements.divSonglist),
-            submit: document.querySelector(DOMElements.buttonsubmit),
-            songDetail: document.querySelector(DOMElements.divSongDetail),
-          }
-        },
+    createPlaylist(text, value) {
+      const html = `<option value="${value}">${text}</option>`;
+      document
+        .querySelector(DOMElements.selectplaylist)
+        .insertAdjacentHTML("beforeend", html);
+    },
 
-        createGenre(text, value) {
-          const html = `<option value="${value}">${text}</option>`;
-          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
-        },
+    createTrack(id, name) {
+      const html = `<a href='#' class='list-group-item list-group-item-action list-group-item-light' id='${id}'>${name}</a>`;
+      document
+        .querySelector(DOMElements.selectplaylist)
+        .insertAdjacentHTML("beforeend", html);
+    },
 
-        createPlaylist(text, value) {
-          const html = `<option value="${value}">${text}</option>`
-          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
-        },
+    createSongDetail(img, title, artist) {
+      const detailDiv = document.querySelector(DOMElements.divSongDetail);
+      detailDiv.innerHTML = "";
 
-        createTrack(id, name) {
-          const html = `<a href='#' class='list-group-item list-group-item-action list-group-item-light' id='${id}'>${name}</a>`;
-          document.querySelector(DOMElements.selectplaylist).insertAdjacentHTML('beforeend', html);
-        },
-
-        createSongDetail(img, title, artist) {
-          const detailDiv = document.querySelector(DOMElements.divSongDetail);
-          detailDiv.innerHTML = '';
-
-          const html = 
-          `
+      const html = `
           <div class="row col-sm-12 px-0">
             <img src ="${img}" alt="">
           </div>
@@ -331,87 +318,84 @@ const SpotifyUIController = (function() {
           </div>
             `;
 
-            detailDiv.insertAdjacentHTML('beforeend', html)
-        },
+      detailDiv.insertAdjacentHTML("beforeend", html);
+    },
 
-        resetSongDetail() {
-          this.inputField().songDetail.innerHTML = '';
-        },
+    resetSongDetail() {
+      this.inputField().songDetail.innerHTML = "";
+    },
 
-        resetTrackDetail() {
-          this.inputField().songDetail.innerHTML = '';
-        },
+    resetTrackDetail() {
+      this.inputField().songDetail.innerHTML = "";
+    },
 
-        resetTracks(){
-          this.inputField().songDetail.innerHTML = '';
-          this.resetTrackDetail();
-        },
+    resetTracks() {
+      this.inputField().songDetail.innerHTML = "";
+      this.resetTrackDetail();
+    },
 
-        resetPlaylist() {
-          this.inputField().playlist.innerHTML = '';
-          this.resetTracks();
-        }
-    }
+    resetPlaylist() {
+      this.inputField().playlist.innerHTML = "";
+      this.resetTracks();
+    },
+  };
 })();
 
-const SpotifyAPPController = (function(UICtrl, APICtrl) {
+const SpotifyAPPController = (function (UICtrl, APICtrl) {
+  const DOMInputs = UICtrl.inputField();
 
-    const DOMInputs = UICtrl.inputField();
+  const loadGenres = async () => {
+    const token = await APICtrl._getToken();
+    const genres = await APICtrl._getGenres(token);
+    genres.forEach((element) => UICtrl.createGenre(element.name, element.id));
+  };
 
-    const loadGenres = async () => {
-      const token = await APICtrl._getToken();
-      const genres = await APICtrl._getGenres(token);
-      genres.forEach(element => UICtrl.createGenre(element.name, element.id));
-    }
+  DOMInputs.genre.addEventListener("change", async () => {
+    UICtrl.resetPlaylist();
 
-    DOMInputs.genre.addEventListener('change', async () => {
-        UICtrl.resetPlaylist();
+    const token = UICtrl.getStoredToken().token;
 
-        const token = UICtrl.getStoredToken().token;
+    const genreSelect = UICtrl.inputField().genre;
 
-        const genreSelect = UICtrl.inputField().genre;
+    const genreID = genreSelect.options[genreSelect.selectedIndex].value;
 
-        const genreID = genreSelect.options[genreSelect.selectedIndex].value;
+    const playlist = await APICtrl._getPlaylistByGenre(token, genreID);
 
-        const playlist = await APICtrl._getPlaylistByGenre(token, genreID);
+    playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.tracks.href));
+  });
 
-        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
-    });
+  DOMInputs.submit.addEventListener("click", async (e) => {
+    e.preventDefault();
+    UICtrl.resetTracks();
 
-    DOMInputs.submit.addEventListener('click', async (e) => {
-        e.preventDefault();
-        UICtrl.resetTracks();
+    const token = UICtrl.getStoredToken().token;
 
-        const token = UICtrl.getStoredToken().token;
+    const playlistSelect = UICtrl.inputField().playlist;
 
-        const playlistSelect = UICtrl.inputField().playlist;
+    const tracksEndPoint =
+      playlistSelect.options[playlistSelect.selectedIndex].value;
 
-        const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
+    const tracks = await APICtrl._getTracks(token, tracksEndPoint);
 
-        const tracks = await APICtrl._getTracks(token, tracksEndPoint);
+    tracks.forEach((t) => UICtrl.createTrack(t.track.href, t.track.name));
+  });
 
-        tracks.forEach(t => UICtrl.createTrack(t.track.href, t.track.name));
-    });
+  DOMInputs.songs.addEventListener("click", async (e) => {
+    e.preventDefault();
+    UICtrl.resetPlaylist();
 
-    DOMInputs.songs.addEventListener('click', async (e) => {
-        e.preventDefault();
-        UICtrl.resetPlaylist();
+    const token = UICtrl.getStoredToken().token;
 
-        const token = UICtrl.getStoredToken().token;
+    const trackEndPoint = e.target.id;
 
-        const trackEndPoint = e.target.id;
+    const track = await APICtrl._getTrack(token, trackEndPoint);
 
-        const track = await APICtrl._getTrack(token, trackEndPoint);
-
-        UICtrl.createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
-    });
-
-    return {
-      init() {
-        console.log('App is starting');
-        loadGenres();
-      }
-    }
+    UICtrl.createTrackDetail(
+      track.album.images[2].url,
+      track.name,
+      track.artists[0].name
+    );
+  });
 
 })(SpotifyUIController, APIController);
 
