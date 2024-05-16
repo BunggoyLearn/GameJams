@@ -224,7 +224,7 @@ const SpotifyGetTrackbyPlaylist = async() => {
         trackPreview: track.track.preview_url,
       }
       infoPlacer += `
-      <div class="track">
+      <div class="track w-full h-48 px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
          <h2>${trackInfo.trackName}</h2>
          <img src="${trackInfo.trackImage}"/>
          <audio controls src="${trackInfo.trackPreview}"></audio>
@@ -237,7 +237,7 @@ const SpotifyGetTrackbyPlaylist = async() => {
     `
 
     console.log(infoPlacer);
-    document.getElementById('game-catalog').innerHTML = infoPlacer;
+    document.getElementById('songs').innerHTML = infoPlacer;
   }
 }
 
