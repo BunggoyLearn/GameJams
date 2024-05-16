@@ -1,3 +1,16 @@
+/********************************************* Reset *********************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
+pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
+s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+figure, header, nav, section, article, aside, footer, figcaption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+/********************************************* Deafults *********************************************/
 
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -29,8 +42,15 @@ body {
 
 }
 
+#left-screen {
+
+    position: fixed;
+    
+}
+
 .btn:hover {
 
+    cursor: pointer;
     transition-duration: 0.5s;
     filter: drop-shadow(3px 3px 6px rgb(6, 149, 4));
     box-shadow: 2px 2px 2px;
@@ -44,7 +64,7 @@ body {
 
     position: fixed;
     margin-top: 2rem;
-    margin-left: -140rem;
+    margin-left: -110rem;
     box-shadow: 2px 2px 2px;
     cursor: pointer;
 
@@ -68,3 +88,5 @@ fieldset {
   .overflow {
     height: 200px;
   }
+
+  
