@@ -1,3 +1,4 @@
+try {
 // Define loader, gameslist, and moregames button
 const loaderEl = document.getElementById("js-preloader");
 const gameList = document.querySelector(".gamelist");
@@ -50,20 +51,20 @@ function loadGames(url) {
       </div>
     </div>
     `;
-    // Add elements into game list
-    gameslist.insertAdjacentElementHTML("beforeend", gameItemEl)
-    });
-    if (nextGameListUrl) {
-      loadMoreGamesBtn.classList.remove("hidden");
-  } else {
-      loadMoreGamesBtn.classList.add("hidden");
-  }
-  /*
-    .catch(error => {
+        // Add elements into game list
+        gameList.insertAdjacentElementHTML("beforeend", gameItemEl);
+      });
+      if (nextGameListUrl) {
+        loadMoreGamesBtn.classList.remove("hidden");
+      } else {
+        loadMoreGamesBtn.classList.add("hidden");
+      }
+    })
+    .catch((error) => {
       console.log("An error occurred:", error);
     });
-    */
 }
+
 loadGames(url);
 
 loadMoreGamesBtn.addEventListener("click", () => {
@@ -71,14 +72,6 @@ loadMoreGamesBtn.addEventListener("click", () => {
     loadGames(nextGameListUrl);
   }
 });
-
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
- */
 }
 
 catch (e) {};
