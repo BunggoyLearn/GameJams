@@ -22,8 +22,6 @@
 
 -  About use modal
 
--  Local Website Link:
-
 
 Launched webstie link: https://bunggoylearn.github.io/GameJams/
 
