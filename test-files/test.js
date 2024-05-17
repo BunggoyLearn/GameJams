@@ -35,7 +35,7 @@ function loadGames(url){
             games.forEach(game => {
                 const gameItemEl = `
                 <div class="lg:w-1/4 pr-4 pl-4 md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4">
-                <a href="preview.html?genre=${game.genres[0].slug}">
+                <a href="preview.html?genre=${game.genres[0].slug}&img=${game.background_image}&name=${game.name}&rating=${game.rating}">
                         <div class="btn item">
                         <img class="w-96 h-44" src="${game.background_image}" alt="${game.name} image">
                             <h4 class="game-name">${game.name}<br><span class="platforms">${getPlatformStr(game.parent_platforms)}</span></h4>

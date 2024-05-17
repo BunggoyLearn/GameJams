@@ -1,4 +1,4 @@
-try {
+/*
 // Define loader, gameslist, and moregames button
 const loaderEl = document.getElementById("js-preloader");
 const gameList = document.querySelector(".gamelist");
@@ -72,9 +72,31 @@ loadMoreGamesBtn.addEventListener("click", () => {
     loadGames(nextGameListUrl);
   }
 });
+*/
+
+const paramsimg = new URLSearchParams(document.location.search);
+const gameimage = paramsimg.get("img")
+
+const paramsname = new URLSearchParams(document.location.search);
+const gamename = paramsname.get("name")
+
+const paramsrating = new URLSearchParams(document.location.search);
+const gamerating = paramsrating.get("rating")
+
+const previewBuilder = function() {
+  let infoPlacerNegativeUno = '';
+
+  infoPlacerNegativeUno += `
+  <div>
+  <img src=${gameimage}></img>
+  <ul> <li class="name"> ${gamename} </li> <li class="rating"> ${gamerating} </li> </ul>
+  </div>
+  `
+  document.getElementById('game-image').innerHTML = infoPlacerNegativeUno;
 }
 
-catch (e) {};
+previewBuilder();
+
   //Spotify API zone
   
 
@@ -326,10 +348,6 @@ const SpotifyPopulatePlaylist = async() => {
     </button>
     `
   }
-//Need to append that closing div OUTSIDE the first "For In" loop.
-    infoPlacer += `
-    </div>
-    `
 //Now we actually append infoPlacer into the HTML.
     document.getElementById('game-catalog-playlists').innerHTML = infoPlacer;
 }
@@ -356,9 +374,6 @@ const SpotifyPopulateAlbum = async() => {
     </button>
     `
   }
-    infoPlacerDos += `
-    </div>
-    `
     document.getElementById('game-catalog-albums').innerHTML = infoPlacerDos;
 }
 
