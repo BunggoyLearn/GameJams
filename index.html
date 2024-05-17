@@ -12,15 +12,31 @@
 
 <body class="bg-gray-800">
     <header>
-
     </header>
     <div class="hero flex bg-gray-800">
         <div id="left-screen" class="h-screen border-solid border-2 border-black w-1/5">
-            <div id="logo" class="h-1/10 w-full p-2 rounded text-center share-tech-mono-regular">
-                <img src="./assets/images/gamejams.png" alt="GameJams" class="mt-40"></div>
+            <div  id="logo" class="h-1/10 w-full p-2 rounded text-center share-tech-mono-regular">
+                <img src="./assets/images/gamejams.png" alt="GameJams" class="mt-40"></div> 
             <button id="home-btn" onClick="window.location.reload();" class="btn h-1/10 w-4/5 m-6 mt-40 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
                 &#127968; Home
             </button>
+            <button id="myBtn" class="btn h-1/10 w-4/5 m-6 mt-40 p-2 border-solid border-2 border-neutral-300 rounded bg-gray-300 text-center share-tech-mono-regular">
+              About Us</button>
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>About Us</h2>
+                  </div>
+                  <div class="modal-body">
+                    <p>Made by a small, but awesome dev team!</p>
+                    <p>Powered by Bung, Christian, Lea, and TJ</p>
+                  </div>
+                  <div class="modal-footer">
+                    <h3>Jam on!</h3>
+                  </div>
+            </div> 
         </div>
         <div class="h-screen w-1/5"></div>
         <div id="game-catalog" class="h-screen w-4/5">
