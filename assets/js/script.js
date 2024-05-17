@@ -240,8 +240,8 @@ let genreID = genreInfo.genreTrans;
 let genreSeed = genreInfo.genreTransSeed;
 let trackSeeds = genreInfo.trackTransSeed
 
-  const clientId = '5ff9d82d94b548d38b13019b174e11af';
-  const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
+const clientId = '38cc08ffedba4741b8aa701a3800aa54';
+const clientSecret = '4849f8a1143c417580c62907666b2dc5';
 
     //private methods
 const _getToken = async () => {
