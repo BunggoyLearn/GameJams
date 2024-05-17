@@ -88,8 +88,8 @@ const previewBuilder = function() {
 
   infoPlacerNegativeUno += `
   <div>
-  <img src=${gameimage}></img>
-  <ul> <li class="name"> ${gamename} </li> <li class="rating"> ${gamerating} </li> </ul>
+  <img class="w-96 h-auto" src=${gameimage}></img>
+  <ul> <li class="name text-center"> ${gamename} </li> <li class="rating text-center"> ${gamerating} </li> </ul>
   </div>
   `
   document.getElementById('game-image').innerHTML = infoPlacerNegativeUno;
@@ -423,3 +423,11 @@ const SpotifyGetTrackbyAlbum = async(id) => {
   }
   document.getElementById('game-catalog-albums-filled').innerHTML = infoPlacerDos;
 }
+
+/**************************************************** Back button *************************************/
+
+const backButton = document.getElementById("back-button");
+
+backButton.addEventListener('click', function () {
+    location.href = "index.html"
+});
