@@ -1,4 +1,11 @@
-try {
+/*
+// Define loader, gameslist, and moregames button
+const loaderEl = document.getElementById("js-preloader");
+const gameList = document.querySelector(".gamelist");
+const loadMoreGamesBtn = document.querySelector(".main-button");
+// Create null function
+let nextGameListURL = null;
+
 // Define API key
 const APIKEY = `d888509914e94b9db7453c6dcf445933`;
 
@@ -64,16 +71,179 @@ function loadGames(url){
 // load games
 loadGames(url);
 
-loadMoreGamesBtn.addEventListener("click", ()=>{
-    if(nextGameListUrl){
-        loadGames(nextGameListUrl);
-    }
-})
+loadMoreGamesBtn.addEventListener("click", () => {
+  if (nextGameListUrl) {
+    loadGames(nextGameListUrl);
+  }
+});
+*/
+
+const paramsimg = new URLSearchParams(document.location.search);
+const gameimage = paramsimg.get("img")
+
+const paramsname = new URLSearchParams(document.location.search);
+const gamename = paramsname.get("name")
+
+const paramsrating = new URLSearchParams(document.location.search);
+const gamerating = paramsrating.get("rating")
+
+const previewBuilder = function() {
+  let infoPlacerNegativeUno = '';
+
+  infoPlacerNegativeUno += `
+  <div>
+  <img class="w-96 h-auto" src=${gameimage}></img>
+  <ul> <li class="name text-center"> ${gamename} </li> <li class="rating text-center"> ${gamerating} </li> </ul>
+  </div>
+  `
+  document.getElementById('game-image').innerHTML = infoPlacerNegativeUno;
 }
 
-catch (e) {};
+previewBuilder();
+
   //Spotify API zone
   
+
+const genreTranslator = function(genre) {
+
+ let genreTrans = undefined
+ let genreTransSeed = undefined
+ let trackTransSeed = undefined
+
+  if (genre == 'action') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal,grunge';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
+  }
+  else if (genre == 'indie') {
+    genreTrans = 'Indie';
+    genreTransSeed = 'indie';
+    trackTransSeed = '6CAG3rBGPTAinoqgVD7fBJ';
+
+  }
+  else if (genre == 'adventure') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
+  }
+  else if (genre == 'rpg') {
+    genreTrans = 'Indie';
+    genreTransSeed = 'indie,soundtracks';
+    trackTransSeed = '6CAG3rBGPTAinoqgVD7fBJ';
+
+  }
+  else if (genre == 'strategy') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
+  }
+  else if (genre == 'shooter') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal,grunge';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
+  }
+  else if (genre == 'casual') {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM'
+
+  }
+  else if (genre == 'simulation') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
+  }
+  else if (genre == 'puzzle') {
+    genreTrans = '';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
+  }
+  else if (genre == 'arcade') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
+  }
+  else if (genre == 'platformer') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
+  }
+  else if (genre == 'racing') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
+  }
+  else if (genre == 'massively-multiplayer') {
+    genreTrans = 'Anime';
+    genreTransSeed = 'anime';
+    trackTransSeed = '2uUpyBnHrH6lAvMnIFcylR';
+
+  }
+  else if (genre == 'sports') {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM'
+
+  }
+  else if (genre == 'fighting') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
+  }
+  else if (genre == 'family') {
+    genreTrans = 'Disney';
+    genreTransSeed = 'dance,disney';
+    trackTransSeed = '4Uy28QVxDK9lURTm2oM78b';
+
+  }
+  else if (genre == 'board-games') {
+    genreTrans = 'Party';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
+  }
+  else if (genre == 'educational') {
+    genreTrans = 'Student';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
+  }
+  else if (genre == 'card') {
+    genreTrans = 'Party';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
+  }
+  else {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM';
+
+  }
+  return {
+    genreTrans:genreTrans,
+    genreTransSeed:genreTransSeed,
+    trackTransSeed:trackTransSeed,
+  }
+}
+
+const params = new URLSearchParams(document.location.search);
+const gamegenre = params.get("genre")
+let genreInfo = genreTranslator(gamegenre);
+let genreID = genreInfo.genreTrans;
+let genreSeed = genreInfo.genreTransSeed;
+let trackSeeds = genreInfo.trackTransSeed
+
   const clientId = '5ff9d82d94b548d38b13019b174e11af';
   const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
 
@@ -178,7 +348,6 @@ const _getAlbumTracks = async (token, albumID) => {
 const SpotifyGetTrackbyPlaylist = async() => {
 // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
   const token = await _getToken();
-  const genreID = 'dinner';
   const playlists = await _getPlaylistByGenre(token, genreID);
   let infoPlacer = '';
 //Now we make a "for in" loop that does a basic counter, making sure all of the playlist IDs that were accessed earlier are accounted for
@@ -191,28 +360,7 @@ const SpotifyGetTrackbyPlaylist = async() => {
     <div class="playlist"> 
     <h1>${playlist.name}</h1> 
     `
-//Now we nest another "For In" Loop. Same thing but for the tracks within each playlist. We put the specifics we want from the data into an object called trackInfo.
-    for (trackIndex in tracks) {
-      const track = tracks[trackIndex]
-      const trackInfo = {
-        trackImage: track.track.album.images[0].url,
-        trackName: track.track.name,
-        trackPreview: track.track.preview_url,
-      }
-//Now we append infoPlacer with the information of the object above and boom done.
-      infoPlacer += `
-      <div class="track">
-         <h2>${trackInfo.trackName}</h2>
-         <img src="${trackInfo.trackImage}"/>
-         <audio controls src="${trackInfo.trackPreview}"></audio>
-      </div>
-
-    `
-    }
-//Need to append that closing div OUTSIDE the first "For In" loop.
-    infoPlacer += `
-    </div>
-    `
+  }
 //Now we actually append infoPlacer into the HTML.
     document.getElementById('game-catalog-playlists').innerHTML = infoPlacer;
   }
@@ -221,8 +369,6 @@ const SpotifyGetTrackbyPlaylist = async() => {
 const SpotifyGetTrackbyAlbum = async() => {
   // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
   const token = await _getToken();
-  const genreSeed = 'classical%2Ccountry';
-  const trackSeeds = '0c6xIDDpzE81m2q797ordA';
   const tracks = await _getRecommendedSongs(token, genreSeed, trackSeeds);
   let infoPlacerDos = '';
   for (trackIndex in tracks) {
@@ -233,162 +379,36 @@ const SpotifyGetTrackbyAlbum = async() => {
     <div class="playlist"> 
     <h1>${albumtracks.name}</h1> 
     `
-    for (albumtrackIndex in albumtracks) {
-      const albumtrack = albumtracks[albumtrackIndex]
-      const trackInfo = {
-        trackName: albumtrack.name,
-        trackPreview: albumtrack.preview_url,
-      }
-      infoPlacerDos += `
-      <div class="track">
-         <h2>${trackInfo.trackName}</h2>
-         <img src="${trackInfo.trackImage}"/>
-         <audio controls src="${trackInfo.trackPreview}"></audio>
-      </div>
-
-    `
-    }
-    infoPlacerDos += `
-    </div>
-    `
+  }
     document.getElementById('game-catalog-albums').innerHTML = infoPlacerDos;
   }
 }
 
-SpotifyGetTrackbyPlaylist();
-SpotifyGetTrackbyAlbum();
-/*
-const SpotifyUIController = (function() {
+const SpotifyGetTrackbyAlbum = async(id) => {
+  // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
+  const token = await _getToken();
+  const albumtracks = await _getAlbumTracks(token, id);
+  let infoPlacerDos = '';
+  for (albumtrackIndex in albumtracks) {
+    const albumtrack = albumtracks[albumtrackIndex]
+    const trackInfo = {
+      trackName: albumtrack.name,
+      trackPreview: albumtrack.preview_url,
+    }
+    infoPlacerDos += `
+    <button type="button" class="lister tracks w-full px-4 py-2 font-medium text-left rtl:text-right border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+    <ul> <li> ${trackInfo.trackName} </li> </ul>
+    <audio controls src="${trackInfo.trackPreview}"></audio>
+    </button>
+    `
+  }
+  document.getElementById('game-catalog-albums-filled').innerHTML = infoPlacerDos;
+}
 
-  return {
-    inputField() {
-      return {
-        genre: document.querySelector(DOMElements.selectgenre),
-        playlist: document.querySelector(DOMElements.selectplaylist),
-        songs: document.querySelector(DOMElements.divSonglist),
-        submit: document.querySelector(DOMElements.buttonsubmit),
-        songDetail: document.querySelector(DOMElements.divSongDetail),
-      };
-    },
+/**************************************************** Back button *************************************/
 
-    createGenre(text, value) {
-      const html = `<option value="${value}">${text}</option>`;
-      document
-        .querySelector(DOMElements.selectplaylist)
-        .insertAdjacentHTML("beforeend", html);
-    },
+const backButton = document.getElementById("back-button");
 
-    createPlaylist(text, value) {
-      const html = `<option value="${value}">${text}</option>`;
-      document
-        .querySelector(DOMElements.selectplaylist)
-        .insertAdjacentHTML("beforeend", html);
-    },
-
-    createTrack(id, name) {
-      const html = `<a href='#' class='list-group-item list-group-item-action list-group-item-light' id='${id}'>${name}</a>`;
-      document
-        .querySelector(DOMElements.selectplaylist)
-        .insertAdjacentHTML("beforeend", html);
-    },
-
-    createSongDetail(img, title, artist) {
-      const detailDiv = document.querySelector(DOMElements.divSongDetail);
-      detailDiv.innerHTML = "";
-
-      const html = `
-          <div class="row col-sm-12 px-0">
-            <img src ="${img}" alt="">
-          </div>
-          <div class="row col-sm-12 px-0">
-            <label for="Genre" class="form-label col-sm-12">${title}:</label>
-          </div>
-          <div class="row col-sm-12 px-0">
-            <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
-          </div>
-            `;
-
-      detailDiv.insertAdjacentHTML("beforeend", html);
-    },
-
-    resetSongDetail() {
-      this.inputField().songDetail.innerHTML = "";
-    },
-
-    resetTrackDetail() {
-      this.inputField().songDetail.innerHTML = "";
-    },
-
-    resetTracks() {
-      this.inputField().songDetail.innerHTML = "";
-      this.resetTrackDetail();
-    },
-
-    resetPlaylist() {
-      this.inputField().playlist.innerHTML = "";
-      this.resetTracks();
-    },
-  };
-})();
-
-const SpotifyAPPController = (function (UICtrl, APICtrl) {
-  const DOMInputs = UICtrl.inputField();
-
-  const loadGenres = async () => {
-    const token = await APICtrl._getToken();
-    const genres = await APICtrl._getGenres(token);
-    genres.forEach((element) => UICtrl.createGenre(element.name, element.id));
-  };
-
-  DOMInputs.genre.addEventListener("change", async () => {
-    UICtrl.resetPlaylist();
-
-    const token = UICtrl.getStoredToken().token;
-
-    const genreSelect = UICtrl.inputField().genre;
-
-    const genreID = genreSelect.options[genreSelect.selectedIndex].value;
-
-    const playlist = await APICtrl._getPlaylistByGenre(token, genreID);
-
-    playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.tracks.href));
-  });
-
-  DOMInputs.submit.addEventListener("click", async (e) => {
-    e.preventDefault();
-    UICtrl.resetTracks();
-
-    const token = UICtrl.getStoredToken().token;
-
-    const playlistSelect = UICtrl.inputField().playlist;
-
-    const tracksEndPoint =
-      playlistSelect.options[playlistSelect.selectedIndex].value;
-
-    const tracks = await APICtrl._getTracks(token, tracksEndPoint);
-
-    tracks.forEach((t) => UICtrl.createTrack(t.track.href, t.track.name));
-  });
-
-  DOMInputs.songs.addEventListener("click", async (e) => {
-    e.preventDefault();
-    UICtrl.resetPlaylist();
-
-    const token = UICtrl.getStoredToken().token;
-
-    const trackEndPoint = e.target.id;
-
-    const track = await APICtrl._getTrack(token, trackEndPoint);
-
-    UICtrl.createTrackDetail(
-      track.album.images[2].url,
-      track.name,
-      track.artists[0].name
-    );
-  });
-
-})(SpotifyUIController, APIController);
-
-// will need to call a method to load the genres on page load
-SpotifyAPPController.init();
-*/
+backButton.addEventListener('click', function () {
+    location.href = "index.html"
+});
