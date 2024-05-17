@@ -78,130 +78,145 @@ catch (e) {};
   //Spotify API zone
   
 
-const genreTranslator = function() {
-  [action, indie, adventure, rpg, strategy, shooter, casual, simulation, puzzle, arcade, platformer, racing, massively-multiplayer, sports, fighting, family, board-games, educational, card]
+const genreTranslator = function(genre) {
 
-  genreID = `${genre}`;
+ let genreTrans = undefined
+ let genreTransSeed = undefined
+ let trackTransSeed = undefined
 
-  if (genreID == 'action') {
+  if (genre == 'action') {
     genreTrans = 'Rock';
-    genreTransSeed = '';
+    genreTransSeed = 'rock,metal,grunge';
     trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
-    return;
+
   }
-  else if (genreID == 'indie') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'indie') {
+    genreTrans = 'Indie';
+    genreTransSeed = 'indie';
+    trackTransSeed = '6CAG3rBGPTAinoqgVD7fBJ';
+
   }
-  else if (genreID == 'adventure') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'adventure') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
   }
-  else if (genreID == 'rpg') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'rpg') {
+    genreTrans = 'Indie';
+    genreTransSeed = 'indie,soundtracks';
+    trackTransSeed = '6CAG3rBGPTAinoqgVD7fBJ';
+
   }
-  else if (genreID == 'strategy') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'strategy') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
   }
-  else if (genreID == 'shooter') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'shooter') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal,grunge';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
   }
-  else if (genreID == 'casual') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'casual') {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM'
+
   }
-  else if (genreID == 'simulation') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'simulation') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
   }
-  else if (genreID == 'puzzle') {
+  else if (genre == 'puzzle') {
     genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
   }
-  else if (genreID == 'arcade') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'arcade') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
   }
-  else if (genreID == 'platformer') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'platformer') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
   }
-  else if (genreID == 'racing') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'racing') {
+    genreTrans = 'Gaming';
+    genreTransSeed = 'power-pop,work-out';
+    trackTransSeed = '6a46kjWWdkVlBxoKVQulCr';
+
   }
-  else if (genreID == 'massively-multiplayer') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'massively-multiplayer') {
+    genreTrans = 'Anime';
+    genreTransSeed = 'anime';
+    trackTransSeed = '2uUpyBnHrH6lAvMnIFcylR';
+
   }
-  else if (genreID == 'sports') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'sports') {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM'
+
   }
-  else if (genreID == 'fighting') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'fighting') {
+    genreTrans = 'Rock';
+    genreTransSeed = 'rock,metal';
+    trackTransSeed = '3qT4bUD1MaWpGrTwcvguhb';
+
   }
-  else if (genreID == 'family') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'family') {
+    genreTrans = 'Disney';
+    genreTransSeed = 'dance,disney';
+    trackTransSeed = '4Uy28QVxDK9lURTm2oM78b';
+
   }
-  else if (genreID == 'board-games') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'board-games') {
+    genreTrans = 'Party';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
   }
-  else if (genreID == 'educational') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'educational') {
+    genreTrans = 'Student';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
   }
-  else if (genreID == 'card') {
-    genreTrans = '';
-    genreTransSeed = '';
-    trackTransSeed = '';
-    return;
+  else if (genre == 'card') {
+    genreTrans = 'Party';
+    genreTransSeed = 'chill,house';
+    trackTransSeed = '5DydMbw2U5Oh1OckJIsniN';
+
+  }
+  else {
+    genreTrans = 'Pop';
+    genreTransSeed = 'pop,edm';
+    trackTransSeed = '11IQ89bxoC3bklnfP5TZiM';
+
+  }
+  return {
+    genreTrans:genreTrans,
+    genreTransSeed:genreTransSeed,
+    trackTransSeed:trackTransSeed,
   }
 }
 
-const genreID = `${genreTrans}`;
-const genreSeed = `${genreTransSeed}`;
-const trackSeeds = `${trackTransSeed}`;
+const params = new URLSearchParams(document.location.search);
+const gamegenre = params.get("genre")
+let genreInfo = genreTranslator(gamegenre);
+let genreID = genreInfo.genreTrans;
+let genreSeed = genreInfo.genreTransSeed;
+let trackSeeds = genreInfo.trackTransSeed
 
   const clientId = '5ff9d82d94b548d38b13019b174e11af';
   const clientSecret = 'b35b37e35de44c07821dd6af498ca7f2';
@@ -298,7 +313,6 @@ const _getAlbumTracks = async (token, albumID) => {
 const SpotifyPopulatePlaylist = async() => {
 // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
   const token = await _getToken();
-  const genreID = 'dinner';
   const playlists = await _getPlaylistByGenre(token, genreID);
   let infoPlacer = '';
 //Now we make a "for in" loop that does a basic counter, making sure all of the playlist IDs that were accessed earlier are accounted for
@@ -324,8 +338,6 @@ const SpotifyPopulatePlaylist = async() => {
 const SpotifyPopulateAlbum = async() => {
   // First we grab the token, genreID and run those through the GetPlaylistbyGenre function, we also create an empty string for infoPlacer.
   const token = await _getToken();
-  const genreSeed = 'classical%2Ccountry';
-  const trackSeeds = '0c6xIDDpzE81m2q797ordA';
   const tracks = await _getRecommendedSongs(token, genreSeed, trackSeeds);
   let infoPlacerDos = '';
   for (trackIndex in tracks) {
